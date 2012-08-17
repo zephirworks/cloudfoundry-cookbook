@@ -52,10 +52,6 @@ default['cloudfoundry']['pid_dir']    = "/var/run/cloudfoundry"
 # not be safe to change.
 default['cloudfoundry']['service_token'] = "0xdeadbeef"
 
-default['cloudfoundry']['vcap_services']['install_path'] = "/srv/vcap-srv"
-default['cloudfoundry']['vcap_services']['repo'] = "https://github.com/cloudfoundry/vcap-services.git"
-default['cloudfoundry']['vcap_services']['reference'] = "ac31866f8568593d8499ad07c5a74ae7ed527aa4"
-
 # The role that will be used to search for a cloud_controller node.
 default['cloudfoundry']['cloud_controller_role'] = 'cloudfoundry_cloud_controller'
 
