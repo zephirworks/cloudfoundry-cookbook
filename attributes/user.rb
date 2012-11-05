@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cloudfoundry
-# Recipe:: user
+# Attributes:: user
 #
 # Copyright 2012, Trotter Cashion
 # Copyright 2012, ZephirWorks
@@ -18,15 +18,14 @@
 # limitations under the License.
 #
 
-node.default['cloudfoundry']['home'] = "/home/#{node['cloudfoundry']['user']}"
+# User that will own and run CloudFoundry.
+default['cloudfoundry']['user'] = 'cloudfoundry'
 
-group node['cloudfoundry']['group'] do
-  gid node['cloudfoundry']['gid']
-end
+# Group of the user that will own and run CloudFoundry.
+default['cloudfoundry']['group'] = 'cloudfoundry'
 
-user node['cloudfoundry']['user'] do
-  uid       node['cloudfoundry']['uid']
-  gid       node['cloudfoundry']['gid']
-  home      node['cloudfoundry']['home']
-  supports  :manage_home => true
-end
+# Uid of the user that will own and run CloudFoundry.
+default['cloudfoundry']['uid'] = 1002
+
+# Gid of the user that will own and run CloudFoundry.
+default['cloudfoundry']['gid'] = 1002

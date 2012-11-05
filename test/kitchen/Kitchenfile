@@ -1,0 +1,4 @@
+cookbook "cloudfoundry" do
+  configuration "user"
+  runtimes []
+end
