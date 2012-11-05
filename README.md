@@ -15,11 +15,14 @@ Platform
 Tested on:
 
 * Ubuntu 10.04
+* Ubuntu 12.04
 
 Cookbooks
 ---------
 
-Require's Optcode's apt cookbook and Riot Games's rbenv cookbook.
+* apt
+* logrotate
+* rbenv
 
 Usage
 =====
@@ -35,44 +38,51 @@ Attributes
 User and group
 --------------
 
-* `cloudfoundry['user']` - User that will own and run CloudFoundry. Default is `cloudfoundry`.
-* `cloudfoundry['group']` - Group of the user that will own and run CloudFoundry. Default is `cloudfoundry`.
-* `cloudfoundry['uid']` - Uid of the user that will own and run CloudFoundry. Default is `1002`.
-* `cloudfoundry['gid']` - Gid of the user that will own and run CloudFoundry. Default is `1002`.
-* `cloudfoundry['home']` - Home of the user that will own and run CloudFoundry. Default is `"/home/#{node['cloudfoundry']['user']}"`.
+* `node['cloudfoundry']['user']` - User that will own and run CloudFoundry. Default is `cloudfoundry`.
+* `node['cloudfoundry']['group']` - Group of the user that will own and run CloudFoundry. Default is `cloudfoundry`.
+* `node['cloudfoundry']['uid']` - Uid of the user that will own and run CloudFoundry. Default is `1002`.
+* `node['cloudfoundry']['gid']` - Gid of the user that will own and run CloudFoundry. Default is `1002`.
+* `node['cloudfoundry']['home']` - Home of the user that will own and run CloudFoundry. Default is `"/home/#{node['cloudfoundry']['user']}"`.
 
 Directories
 -----------
 
-* `cloudfoundry['config_dir']` - Where to write config files for all CloudFoundry components. Default is `/etc/cloudfoundry`.
-* `cloudfoundry['data_dir']` - Path to the directory used by components to store private data. Default is `/var/vcap/data`.
-* `cloudfoundry['droplets_dir']` - Where to store staged droplets. Default is `"#{node.default['cloudfoundry']['shared_dir']}/droplets"`.
-* `cloudfoundry['log_dir']` - Where to write log files for all CloudFoundry components. Default is `/var/log/cloudfoundry`.
-* `cloudfoundry['pid_dir']` - Where  to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry`.
-* `cloudfoundry['resources_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/resources"`.
-* `cloudfoundry['services_dir']` - Path to the directory used by services to store private data. Default is `/var/vcap/services`.
-* `cloudfoundry['staging_manifests_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/staging_manifests"`.
+* `node['cloudfoundry']['config_dir']` - Where to write config files for all CloudFoundry components. Default is `/etc/cloudfoundry`.
+* `node['cloudfoundry']['data_dir']` - Path to the directory used by components to store private data. Default is `/var/vcap/data`.
+* `node['cloudfoundry']['droplets_dir']` - Where to store staged droplets. Default is `"#{node.default['cloudfoundry']['shared_dir']}/droplets"`.
+* `node['cloudfoundry']['log_dir']` - Where to write log files for all CloudFoundry components. Default is `/var/log/cloudfoundry`.
+* `node['cloudfoundry']['pid_dir']` - Where  to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry`.
+* `node['cloudfoundry']['resources_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/resources"`.
+* `node['cloudfoundry']['services_dir']` - Path to the directory used by services to store private data. Default is `/var/vcap/services`.
+* `node['cloudfoundry']['staging_manifests_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/staging_manifests"`.
 
 Rbenv
 -----
 
-* `cloudfoundry['ruby_1_9_2_version']` - The exact version of ruby-1.9.2 to install. Default is `1.9.2-p290"`.
+* `node['cloudfoundry']['ruby_1_9_2_version']` - The exact version of ruby-1.9.2 to install. Default is `1.9.2-p290"`.
 
-* `cloudfoundry['vcap'][:install_path]` - Where to install the CloudFoundry code. Default is `/srv/vcap"`.
-* `cloudfoundry['vcap'][:repo]` - Repository to use when fetching the CloudFoundry code. Default is `https://github.com/cloudfoundry/vcap.git"`.
-* `cloudfoundry['vcap'][:reference]` - Git reference to use when fetching the CloudFoundry code. Can be either a specific sha or a reference such as `HEAD` or `master`. Default is `e6378a1d7987557cb9316e73124db37e1a3268c8"`.
-* `cloudfoundry['local_route']` - local_route is the IP address of a well known server on your network, it is used to choose the right ip address (think of hosts that have multiple nics and IP addresses assigned to them) of the host running the cloud controller. Default value of nil, should work in most cases. Default is `nil`.
-* `cloudfoundry['capacity'][:memory]` - Maximum amount of memory that an application can request. Default is `2048`.
-* `cloudfoundry['capacity'][:max_uris]` - Maximum number of uris to which an application can be bound. Default is `4`.
-* `cloudfoundry['capacity'][:max_services]` - Maximum number of services to which an application can be bound. Default is `16`.
-* `cloudfoundry['capacity'][:max_apps]` - Maximum number of applications that a user can have. Default is `20`.
-* `cloudfoundry['nats_server'][:host]` - Host of the Nats Server that all CloudFoundry components will use for messaging. Default is `localhost"`.
+Miscellaneous
+-------------
+
+* `node['cloudfoundry']['local_route']` - local_route is the IP address of a well known server on your network, it is used to choose the right ip address (think of hosts that have multiple nics and IP addresses assigned to them) of the host running the cloud controller. Default value of nil, should work in most cases. Default is `nil`.
+* `node['cloudfoundry']['capacity']['memory']` - Maximum amount of memory that an application can request. Default is `2048`.
+* `node['cloudfoundry']['capacity']['max_uris']` - Maximum number of uris to which an application can be bound. Default is `4`.
+* `node['cloudfoundry']['capacity']['max_services']` - Maximum number of services to which an application can be bound. Default is `16`.
+* `node['cloudfoundry']['capacity']['max_apps']` - Maximum number of applications that a user can have. Default is `20`.
+* `node['cloudfoundry']['nats_server']['host']` - Host of the Nats Server that all CloudFoundry components will use for messaging. Default is `localhost"`.
+* `node['cloudfoundry']['nats_server']['port']` - Port of the Nats Server that all CloudFoundry components will use for messaging. Default is `4222"`.
+* `node['cloudfoundry']['service_token']` - The token to use to authenticate services to cloudfoundry. Default is `0xdeadbeef`.
+* `node['cloudfoundry']['cloud_controller_role']` - The role that will be used to search for a cloud_controller node. Default is `cloudfoundry_cloud_controller`.
+* `node['cloudfoundry']['nats_server_role']` - The role that will be used to search for a nats-server node. Default is `cloudfoundry_nats_server`.
+* `node['cloudfoundry']['vcap_redis_role']` - The role that will be used to search for a redis_vcap node. Default is `cloudfoundry_redis_vcap`.
 
 License and Author
 ==================
 
+Author:: Andrea Campi (<andrea.campi@zephirworks.com>)
 Author:: Trotter Cashion (<cashion@gmail.com>)
 
+Copyright:: 2012 ZephirWorks
 Copyright:: 2012 Trotter Cashion
 
 Licensed under the Apache License, Version 2.0 (the "License");
