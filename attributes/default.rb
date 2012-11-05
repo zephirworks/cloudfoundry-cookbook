@@ -1,6 +1,3 @@
-# The exact version of ruby-1.9.2 to install.
-default['cloudfoundry']['ruby_1_9_2_version'] = "1.9.2-p290"
-
 # local_route is the IP address of a well known server on your network, it
 # is used to choose the right ip address (think of hosts that have multiple nics
 # and IP addresses assigned to them) of the host running the cloud controller. Default

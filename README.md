@@ -53,8 +53,11 @@ Directories
 * `cloudfoundry['services_dir']` - Path to the directory used by services to store private data. Default is `/var/vcap/services`.
 * `cloudfoundry['staging_manifests_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/staging_manifests"`.
 
+Rbenv
+-----
 
 * `cloudfoundry['ruby_1_9_2_version']` - The exact version of ruby-1.9.2 to install. Default is `1.9.2-p290"`.
+
 * `cloudfoundry['vcap'][:install_path]` - Where to install the CloudFoundry code. Default is `/srv/vcap"`.
 * `cloudfoundry['vcap'][:repo]` - Repository to use when fetching the CloudFoundry code. Default is `https://github.com/cloudfoundry/vcap.git"`.
 * `cloudfoundry['vcap'][:reference]` - Git reference to use when fetching the CloudFoundry code. Can be either a specific sha or a reference such as `HEAD` or `master`. Default is `e6378a1d7987557cb9316e73124db37e1a3268c8"`.

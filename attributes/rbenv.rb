@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cloudfoundry
-# Recipe:: directories
+# Recipe:: rbenv
 #
 # Copyright 2012, Trotter Cashion
 # Copyright 2012, ZephirWorks
@@ -18,8 +18,5 @@
 # limitations under the License.
 #
 
-log "DEPRECATED: use cloudfoundry::rbenv instead of cloudfoundry::ruby_1_9_2" do
-  level :warn
-end
-
-include_recipe "cloudfoundry::rbenv"
+# The exact version of ruby-1.9.2 to install.
+default['cloudfoundry']['ruby_1_9_2_version'] = "1.9.2-p290"
