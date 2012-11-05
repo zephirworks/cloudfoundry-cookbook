@@ -39,7 +39,20 @@ User and group
 * `cloudfoundry['group']` - Group of the user that will own and run CloudFoundry. Default is `cloudfoundry`.
 * `cloudfoundry['uid']` - Uid of the user that will own and run CloudFoundry. Default is `1002`.
 * `cloudfoundry['gid']` - Gid of the user that will own and run CloudFoundry. Default is `1002`.
-* `cloudfoundry['home']` - Home of the user that will own and run CloudFoundry. Default is `/home/cloudfoundry`.
+* `cloudfoundry['home']` - Home of the user that will own and run CloudFoundry. Default is `"/home/#{node['cloudfoundry']['user']}"`.
+
+Directories
+-----------
+
+* `cloudfoundry['config_dir']` - Where to write config files for all CloudFoundry components. Default is `/etc/cloudfoundry`.
+* `cloudfoundry['data_dir']` - Path to the directory used by components to store private data. Default is `/var/vcap/data`.
+* `cloudfoundry['droplets_dir']` - Where to store staged droplets. Default is `"#{node.default['cloudfoundry']['shared_dir']}/droplets"`.
+* `cloudfoundry['log_dir']` - Where to write log files for all CloudFoundry components. Default is `/var/log/cloudfoundry`.
+* `cloudfoundry['pid_dir']` - Where  to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry`.
+* `cloudfoundry['resources_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/resources"`.
+* `cloudfoundry['services_dir']` - Path to the directory used by services to store private data. Default is `/var/vcap/services`.
+* `cloudfoundry['staging_manifests_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/staging_manifests"`.
+
 
 * `cloudfoundry['ruby_1_9_2_version']` - The exact version of ruby-1.9.2 to install. Default is `1.9.2-p290"`.
 * `cloudfoundry['vcap'][:install_path]` - Where to install the CloudFoundry code. Default is `/srv/vcap"`.
@@ -50,13 +63,7 @@ User and group
 * `cloudfoundry['capacity'][:max_uris]` - Maximum number of uris to which an application can be bound. Default is `4`.
 * `cloudfoundry['capacity'][:max_services]` - Maximum number of services to which an application can be bound. Default is `16`.
 * `cloudfoundry['capacity'][:max_apps]` - Maximum number of applications that a user can have. Default is `20`.
-* `cloudfoundry['droplets_dir']` - TODO (trotter): Find out what this does. Default is `/var/vcap/shared/droplets"`.
-* `cloudfoundry['resources_dir']` - TODO (trotter): Find out what this does. Default is `/var/vcap/shared/resources"`.
-* `cloudfoundry['staging_manifests_dir']` - TODO (trotter): Find out what this does. Default is `/var/vcap/shared/staging_manifests"`.
 * `cloudfoundry['nats_server'][:host]` - Host of the Nats Server that all CloudFoundry components will use for messaging. Default is `localhost"`.
-* `cloudfoundry['config_dir']` - Where to write config files for all CloudFoundry components. Default is `/etc/cloudfoundry"`.
-* `cloudfoundry['log_dir']` - Where to write log files for all CloudFoundry components. Default is `/var/log/cloudfoundry"`.
-* `cloudfoundry['pid_dir']` - Where  to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry"`.
 
 License and Author
 ==================

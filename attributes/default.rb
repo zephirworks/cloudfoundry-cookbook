@@ -19,15 +19,6 @@ default['cloudfoundry']['capacity']['max_services'] = 16
 # Maximum number of applications that a user can have.
 default['cloudfoundry']['capacity']['max_apps'] = 20
 
-# TODO (trotter): Find out what this does.
-default['cloudfoundry']['shared_dir'] = "/var/vcap/shared"
-
-# Path to the directory used by services to store private data.
-default['cloudfoundry']['services_dir'] = "/var/vcap/services"
-
-# Path to the directory used by components to store private data.
-default['cloudfoundry']['data_dir'] = "/var/vcap/data"
-
 # Host of the Nats Server that all CloudFoundry components will use for
 # messaging.
 default['cloudfoundry']['nats_server']['host'] = "localhost"
@@ -35,15 +26,6 @@ default['cloudfoundry']['nats_server']['host'] = "localhost"
 # Host of the Nats Server that all CloudFoundry components will use for
 # messaging.
 default['cloudfoundry']['nats_server']['port'] = "4222"
-
-# Where to write config files for all CloudFoundry components.
-default['cloudfoundry']['config_dir'] = "/etc/cloudfoundry"
-
-# Where to write log files for all CloudFoundry components.
-default['cloudfoundry']['log_dir']    = "/var/log/cloudfoundry"
-
-# Where  to write pid files for all CloudFoundry components.
-default['cloudfoundry']['pid_dir']    = "/var/run/cloudfoundry"
 
 # The token to use to authenticate services to cloudfoundry. This _may_
 # not be safe to change.
