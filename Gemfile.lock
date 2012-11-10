@@ -93,7 +93,7 @@ GEM
       vagrant (~> 1.0.2)
       yajl-ruby (~> 1.1.0)
     thor (0.16.0)
-    treetop (1.4.11)
+    treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
     uuidtools (2.1.3)
