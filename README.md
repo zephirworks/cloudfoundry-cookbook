@@ -61,6 +61,23 @@ Rbenv
 
 * `node['cloudfoundry']['ruby_1_9_2_version']` - The exact version of ruby-1.9.2 to install. Default is `1.9.2-p290"`.
 
+Nats
+----
+
+All components in a CloudFoundry cluster need access to a Nats Server.
+
+The recommended way to configure the server is to use search:
+
+* `node['cloudfoundry']['nats_server_role']` - The role that will be used to search for a nats-server node. Default is `cloudfoundry_nats_server`.
+
+If for some reason you can't or won't use search, you need to specify connection information on each node
+(ideally, using a role):
+
+* `node['cloudfoundry']['nats_server']['host']` - Host of the Nats Server that all CloudFoundry components will use for messaging. Default is `localhost"`.
+* `node['cloudfoundry']['nats_server']['port']` - Port of the Nats Server that all CloudFoundry components will use for messaging. Default is `4222"`.
+* `node['cloudfoundry']['nats_server']['user']` - Host of the Nats Server that all CloudFoundry components will use for messaging. Default is `nats"`.
+* `node['cloudfoundry']['nats_server']['password']` - Port of the Nats Server that all CloudFoundry components will use for messaging. Default is `nats"`.
+
 Miscellaneous
 -------------
 
@@ -69,11 +86,8 @@ Miscellaneous
 * `node['cloudfoundry']['capacity']['max_uris']` - Maximum number of uris to which an application can be bound. Default is `4`.
 * `node['cloudfoundry']['capacity']['max_services']` - Maximum number of services to which an application can be bound. Default is `16`.
 * `node['cloudfoundry']['capacity']['max_apps']` - Maximum number of applications that a user can have. Default is `20`.
-* `node['cloudfoundry']['nats_server']['host']` - Host of the Nats Server that all CloudFoundry components will use for messaging. Default is `localhost"`.
-* `node['cloudfoundry']['nats_server']['port']` - Port of the Nats Server that all CloudFoundry components will use for messaging. Default is `4222"`.
 * `node['cloudfoundry']['service_token']` - The token to use to authenticate services to cloudfoundry. Default is `0xdeadbeef`.
 * `node['cloudfoundry']['cloud_controller_role']` - The role that will be used to search for a cloud_controller node. Default is `cloudfoundry_cloud_controller`.
-* `node['cloudfoundry']['nats_server_role']` - The role that will be used to search for a nats-server node. Default is `cloudfoundry_nats_server`.
 * `node['cloudfoundry']['vcap_redis_role']` - The role that will be used to search for a redis_vcap node. Default is `cloudfoundry_redis_vcap`.
 
 License and Author

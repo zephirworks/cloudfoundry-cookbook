@@ -69,21 +69,22 @@ class Chef
         end
       end
 
+      #
+      # Look for the Nats Server to use.
+      #
+      # We will try a search first; if we find a suitable node, we will get the
+      # attributes from there.
+      # If that fails we will then look for attributes set on the current node.
+      #
       def cf_mbus_url
-        ret = "nats://#{node['nats_server']['user']}:#{node['nats_server']['password']}@"
-
-        if Chef::Config[:solo]
-          ret << "#{node['cloudfoundry']['nats_server']['host']}:#{node['cloudfoundry']['nats_server']['port']}/"
-          return ret
-        elsif cf_node = cf_nats_server_node
+        if !Chef::Config[:solo] && cf_node = cf_nats_server_node
+          nats_attrs = cf_node['nats_server']
           host = cf_node.attribute?('cloud') ? cf_node['cloud']['local_ipv4'] : cf_node['ipaddress']
-          port = cf_node['nats_server']['port'] || node['cloudfoundry']['nats_server']['port']
-          ret << "#{host}:#{port}/"
-        else
-          raise "cloud_controller_url found no cloud_controller"
+          return "#{nats_attrs['user']}:#{nats_attrs['password']}@#{host}:#{nats_attrs['port']}/"
         end
 
-        ret
+        nats_attrs = node['cloudfoundry']['nats_server']
+        "nats://#{nats_attrs['user']}:#{nats_attrs['password']}@#{nats_attrs['host']}:#{nats_attrs['port']}/"
       end
 
       def cf_vcap_redis_node
