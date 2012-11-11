@@ -29,20 +29,7 @@ action :create do
   include_recipe "logrotate"
   include_recipe "cloudfoundry::default"
 
-  directory node['cloudfoundry']['config_dir'] do
-    owner "root"
-    group 0
-    recursive true
-    action :nothing
-  end.run_action(:create)
-
-  t1 = template new_resource.config_file do
-    source   "#{new_resource.name}-config.yml.erb"
-    owner    new_resource.user
-    mode     "0644"
-    action :nothing
-  end
-  t1.run_action(:create)
+  cfg_updated = create_config_file
 
   t2 = template "/etc/init/#{new_resource.component_name}.conf" do
     cookbook new_resource.upstart_file_cookbook
@@ -77,7 +64,7 @@ action :create do
     create "644 root root"
   end
 
-  if new_resource.updated_by_last_action(t1.updated_by_last_action? || t2.updated_by_last_action?)
+  if new_resource.updated_by_last_action(cfg_updated || t2.updated_by_last_action?)
     new_resource.notifies(:restart, new_resource.service_resource)
   end
 end
@@ -95,4 +82,25 @@ end
 action :start do
   new_resource.service_resource.run_action(:start)
   new_resource.updated_by_last_action(new_resource.service_resource.updated_by_last_action?)
+end
+
+protected
+
+def create_config_file
+  directory node['cloudfoundry']['config_dir'] do
+    owner "root"
+    group 0
+    recursive true
+    action :nothing
+  end.run_action(:create)
+
+  t1 = template new_resource.config_file do
+    source   "#{new_resource.name}-config.yml.erb"
+    owner    new_resource.user
+    mode     "0644"
+    action :nothing
+  end
+  t1.run_action(:create)
+
+  t1.updated_by_last_action?
 end
