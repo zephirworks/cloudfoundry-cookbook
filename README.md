@@ -49,12 +49,9 @@ Directories
 
 * `node['cloudfoundry']['config_dir']` - Where to write config files for all CloudFoundry components. Default is `/etc/cloudfoundry`.
 * `node['cloudfoundry']['data_dir']` - Path to the directory used by components to store private data. Default is `/var/vcap/data`.
-* `node['cloudfoundry']['droplets_dir']` - Where to store staged droplets. Default is `"#{node.default['cloudfoundry']['shared_dir']}/droplets"`.
 * `node['cloudfoundry']['log_dir']` - Where to write log files for all CloudFoundry components. Default is `/var/log/cloudfoundry`.
 * `node['cloudfoundry']['pid_dir']` - Where  to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry`.
-* `node['cloudfoundry']['resources_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/resources"`.
 * `node['cloudfoundry']['services_dir']` - Path to the directory used by services to store private data. Default is `/var/vcap/services`.
-* `node['cloudfoundry']['staging_manifests_dir']` - TODO (trotter): Find out what this does. Default is `"#{node.default['cloudfoundry']['shared_dir']}/staging_manifests"`.
 
 Rbenv
 -----

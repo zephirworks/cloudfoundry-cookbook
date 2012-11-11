@@ -18,11 +18,7 @@
 # limitations under the License.
 #
 
-node.default['cloudfoundry']['droplets_dir']           = "#{node.default['cloudfoundry']['shared_dir']}/droplets"
-node.default['cloudfoundry']['resources_dir']          = "#{node.default['cloudfoundry']['shared_dir']}/resources"
-node.default['cloudfoundry']['staging_manifests_dir']  = "#{node.default['cloudfoundry']['shared_dir']}/staging_manifests"
-
-%w[config_dir data_dir droplets_dir log_dir pid_dir resources_dir services_dir staging_manifests_dir].each do |d|
+%w[config_dir data_dir log_dir pid_dir services_dir].each do |d|
   directory node['cloudfoundry'][d] do
     recursive true
     owner node['cloudfoundry']['user']
