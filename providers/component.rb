@@ -24,47 +24,15 @@ def initialize(name, run_context=nil)
 end
 
 action :create do
-  cf_resource = new_resource
-
   include_recipe "logrotate"
   include_recipe "cloudfoundry::default"
 
   cfg_updated = create_config_file
+  svc_updated = create_service
 
-  t2 = template "/etc/init/#{new_resource.component_name}.conf" do
-    cookbook new_resource.upstart_file_cookbook
-    source   new_resource.upstart_file
-    mode     0644
-    variables(
-      :component_name => new_resource.component_name,
-      :path        => new_resource.ruby_path,
-      :bin_file    => new_resource.bin_file,
-      :binary      => new_resource.binary,
-      :config_file => new_resource.config_file,
-      :pid_file    => new_resource.pid_file,
-      :user        => new_resource.user,
-      :extra_args  => new_resource.extra_args
-    )
-    action :nothing
-  end
-  t2.run_action(:create)
+  create_logrotate_config
 
-  l = link "/etc/init.d/#{new_resource.component_name}" do
-    to "/lib/init/upstart-job"
-    action :nothing
-  end
-  l.run_action(:create)
-
-  log_file = new_resource.log_file
-  logrotate_app new_resource.component_name do
-    cookbook "logrotate"
-    path log_file
-    frequency daily
-    rotate 30
-    create "644 root root"
-  end
-
-  if new_resource.updated_by_last_action(cfg_updated || t2.updated_by_last_action?)
+  if new_resource.updated_by_last_action(cfg_updated || svc_updated)
     new_resource.notifies(:restart, new_resource.service_resource)
   end
 end
@@ -103,4 +71,43 @@ def create_config_file
   t1.run_action(:create)
 
   t1.updated_by_last_action?
+end
+
+def create_service
+  t = template "/etc/init/#{new_resource.component_name}.conf" do
+    cookbook new_resource.upstart_file_cookbook
+    source   new_resource.upstart_file
+    mode     0644
+    variables(
+      :component_name => new_resource.component_name,
+      :path        => new_resource.ruby_path,
+      :bin_file    => new_resource.bin_file,
+      :binary      => new_resource.binary,
+      :config_file => new_resource.config_file,
+      :pid_file    => new_resource.pid_file,
+      :user        => new_resource.user,
+      :extra_args  => new_resource.extra_args
+    )
+    action :nothing
+  end
+  t.run_action(:create)
+
+  l = link "/etc/init.d/#{new_resource.component_name}" do
+    to "/lib/init/upstart-job"
+    action :nothing
+  end
+  l.run_action(:create)
+
+  t.updated_by_last_action? || l.updated_by_last_action?
+end
+
+def create_logrotate_config
+  log_file = new_resource.log_file
+  logrotate_app new_resource.component_name do
+    cookbook "logrotate"
+    path log_file
+    frequency daily
+    rotate 30
+    create "644 root root"
+  end
 end
