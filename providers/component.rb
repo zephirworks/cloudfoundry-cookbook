@@ -25,7 +25,6 @@ end
 
 action :create do
   include_recipe "logrotate"
-  include_recipe "cloudfoundry::user"
 
   cfg_updated = create_config_file
   svc_updated = create_service
