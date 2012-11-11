@@ -29,6 +29,13 @@ action :create do
   include_recipe "logrotate"
   include_recipe "cloudfoundry::default"
 
+  directory node['cloudfoundry']['config_dir'] do
+    owner "root"
+    group 0
+    recursive true
+    action :nothing
+  end.run_action(:create)
+
   t1 = template new_resource.config_file do
     source   "#{new_resource.name}-config.yml.erb"
     owner    new_resource.user
