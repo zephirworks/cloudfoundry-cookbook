@@ -11,6 +11,7 @@ def initialize(name, run_context=nil)
   new_resource.component_name("cloudfoundry-#{new_resource.name}") unless new_resource.component_name
   new_resource.config_file(::File.join(node['cloudfoundry']['config_dir'], "#{new_resource.name}.yml")) unless new_resource.config_file
   new_resource.user(node['cloudfoundry']['user']) unless new_resource.user
+  new_resource.group(node['cloudfoundry']['group']) unless new_resource.group
   new_resource.bin_file(::File.join(new_resource.install_path, "bin", new_resource.name)) unless new_resource.bin_file
   new_resource.binary("#{::File.join(new_resource.ruby_path, "ruby")} #{new_resource.bin_file}")
   new_resource.upstart_file("upstart.conf.erb") unless new_resource.upstart_file
@@ -26,12 +27,13 @@ end
 action :create do
   include_recipe "logrotate"
 
+  user_updated = create_user
   cfg_updated = create_config_file
   svc_updated = create_service
 
   create_logrotate_config
 
-  if new_resource.updated_by_last_action(cfg_updated || svc_updated)
+  if new_resource.updated_by_last_action(user_updated || cfg_updated || svc_updated)
     new_resource.notifies(:restart, new_resource.service_resource)
   end
 end
@@ -52,6 +54,22 @@ action :start do
 end
 
 protected
+
+def create_user
+  u = user new_resource.user do
+    home node['cloudfoundry']['home']
+    action :nothing
+  end
+  u.run_action(:create)
+
+  g = group new_resource.group do
+    members [ new_resource.user ]
+    action :nothing
+  end
+  g.run_action(:create)
+
+  u.updated_by_last_action? || g.updated_by_last_action?
+end
 
 def create_config_file
   directory node['cloudfoundry']['config_dir'] do
