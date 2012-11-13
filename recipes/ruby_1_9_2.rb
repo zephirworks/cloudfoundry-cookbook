@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: cloudfoundry
-# Recipe:: directories
+# Recipe:: ruby_1_9_2
 #
 # Copyright 2012, Trotter Cashion
 # Copyright 2012, ZephirWorks
