@@ -84,7 +84,7 @@ def create_user
   g.run_action(:create)
 
   user_group = new_resource.group
-  user_home = new_resource.home
+  user_home = new_resource.user_home
   u = user new_resource.user do
     gid user_group
     home user_home
