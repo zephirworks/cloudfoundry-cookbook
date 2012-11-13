@@ -32,6 +32,7 @@ def initialize(name, run_context=nil)
   new_resource.config_file(::File.join(node['cloudfoundry']['config_dir'], "#{new_resource.name}.yml")) unless new_resource.config_file
   new_resource.user(node['cloudfoundry']['user']) unless new_resource.user
   new_resource.group(node['cloudfoundry']['group']) unless new_resource.group
+  new_resource.user_home(node['cloudfoundry']['home']) unless new_resource.user_home
   new_resource.bin_file(::File.join(new_resource.install_path, "bin", new_resource.name)) unless new_resource.bin_file
   new_resource.binary("#{::File.join(new_resource.ruby_path, "ruby")} #{new_resource.bin_file}")
   new_resource.upstart_file("upstart.conf.erb") unless new_resource.upstart_file
@@ -81,9 +82,12 @@ def create_user
   end
   g.run_action(:create)
 
+  user_group = new_resource.group
+  user_home = new_resource.home
   u = user new_resource.user do
-    gid new_resource.group
-    home node['cloudfoundry']['home']
+    gid user_group
+    home user_home
+    supports :manage_home => true
     action :nothing
   end
   u.run_action(:create)

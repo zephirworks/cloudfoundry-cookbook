@@ -31,6 +31,7 @@ attribute :component_name, :kind_of => [String, NilClass], :default => nil
 attribute :config_file, :kind_of => [String, NilClass], :default => nil
 attribute :user, :kind_of => [String, NilClass], :default => nil
 attribute :group, :kind_of => [String, NilClass], :default => nil
+attribute :user_home, :kind_of => [String, NilClass], :default => nil
 attribute :bin_file, :kind_of => [String, NilClass], :default => nil
 attribute :binary, :kind_of => [String, NilClass], :default => nil
 attribute :upstart_file, :kind_of => [String, NilClass], :default => nil
