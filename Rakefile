@@ -3,7 +3,7 @@
 desc "Runs foodcritic linter"
 task :foodcritic do
   if Gem::Version.new("1.9.2") <= Gem::Version.new(RUBY_VERSION.dup)
-    sandbox = File.join(File.dirname(__FILE__), %w{tmp foodcritic})
+    sandbox = File.join(File.dirname(__FILE__), %w{tmp foodcritic cloudfoundry})
     prepare_foodcritic_sandbox(sandbox)
 
     sh "foodcritic --epic-fail any #{File.dirname(sandbox)}"
