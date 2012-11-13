@@ -50,7 +50,7 @@ Directories
 * `node['cloudfoundry']['config_dir']` - Where to write config files for all CloudFoundry components. Default is `/etc/cloudfoundry`.
 * `node['cloudfoundry']['data_dir']` - Path to the directory used by components to store private data. Default is `/var/vcap/data`.
 * `node['cloudfoundry']['log_dir']` - Where to write log files for all CloudFoundry components. Default is `/var/log/cloudfoundry`.
-* `node['cloudfoundry']['pid_dir']` - Where  to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry`.
+* `node['cloudfoundry']['pid_dir']` - Where to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry`.
 * `node['cloudfoundry']['services_dir']` - Path to the directory used by services to store private data. Default is `/var/vcap/services`.
 
 Rbenv
@@ -61,11 +61,11 @@ Rbenv
 Nats
 ----
 
-All components in a CloudFoundry cluster need access to a Nats Server.
+All components in a CloudFoundry cluster need access to a Nats server.
 
 The recommended way to configure the server is to use search:
 
-* `node['cloudfoundry']['nats_server_role']` - The role that will be used to search for a nats-server node. Default is `cloudfoundry_nats_server`.
+* `node['cloudfoundry']['nats_server_role']` - The role that will be used to search for a Nats server node. Default is `cloudfoundry_nats_server`.
 
 If for some reason you can't or won't use search, you need to specify connection information on each node
 (ideally, using a role):
