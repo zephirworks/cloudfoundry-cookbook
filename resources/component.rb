@@ -28,6 +28,7 @@ attribute :pid_file, :kind_of => String, :required => true
 
 # defaults to "cloudfoundry-#{name}"
 attribute :component_name, :kind_of => [String, NilClass], :default => nil
+attribute :config_dir, :kind_of => [String, NilClass], :default => nil
 attribute :config_file, :kind_of => [String, NilClass], :default => nil
 attribute :user, :kind_of => [String, NilClass], :default => nil
 attribute :group, :kind_of => [String, NilClass], :default => nil

@@ -29,7 +29,8 @@ def initialize(name, run_context=nil)
   new_resource.ruby_path(ruby_bin_path(new_resource.ruby_version)) unless new_resource.ruby_path
 
   new_resource.component_name("cloudfoundry-#{new_resource.name}") unless new_resource.component_name
-  new_resource.config_file(::File.join(node['cloudfoundry']['config_dir'], "#{new_resource.name}.yml")) unless new_resource.config_file
+  new_resource.config_dir(node['cloudfoundry']['config_dir']) unless new_resource.config_dir
+  new_resource.config_file(::File.join(new_resource.config_dir, "#{new_resource.name}.yml")) unless new_resource.config_file
   new_resource.user(node['cloudfoundry']['user']) unless new_resource.user
   new_resource.group(node['cloudfoundry']['group']) unless new_resource.group
   new_resource.user_home(node['cloudfoundry']['home']) unless new_resource.user_home
@@ -96,7 +97,7 @@ def create_user
 end
 
 def create_config_file
-  directory node['cloudfoundry']['config_dir'] do   # XXX
+  directory new_resource.config_dir do
     owner "root"
     group 0
     recursive true
