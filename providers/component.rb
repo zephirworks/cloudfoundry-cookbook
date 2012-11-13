@@ -56,23 +56,23 @@ end
 protected
 
 def create_user
+  g = group new_resource.group do
+    action :nothing
+  end
+  g.run_action(:create)
+
   u = user new_resource.user do
+    gid new_resource.group
     home node['cloudfoundry']['home']
     action :nothing
   end
   u.run_action(:create)
 
-  g = group new_resource.group do
-    members [ new_resource.user ]
-    action :nothing
-  end
-  g.run_action(:create)
-
-  u.updated_by_last_action? || g.updated_by_last_action?
+  g.updated_by_last_action? || u.updated_by_last_action?
 end
 
 def create_config_file
-  directory node['cloudfoundry']['config_dir'] do
+  directory node['cloudfoundry']['config_dir'] do   # XXX
     owner "root"
     group 0
     recursive true
