@@ -18,12 +18,15 @@
 #
 
 action :create do
+  updated = false
+
   if node['cloudfoundry']['runtimes'] && node['cloudfoundry']['runtimes'][new_resource.name]
     log "Redefining existing runtime #{new_resource.name}" do
       level :warn
     end
   else
     log "Defining a new runtime: #{new_resource.name}"
+    updated = true
   end
 
   node_attrs = node.default['cloudfoundry']['runtimes'][new_resource.name]
@@ -32,4 +35,6 @@ action :create do
   node_attrs['version']       = new_resource.version
   node_attrs['version_flag']  = new_resource.version_flag
   node_attrs['default']       = new_resource.default
+
+  new_resource.updated_by_last_action(updated)
 end
