@@ -35,6 +35,7 @@ action :create do
   node_attrs['version']       = new_resource.version
   node_attrs['version_flag']  = new_resource.version_flag
   node_attrs['default']       = new_resource.default
+  node_attrs['frameworks']    = new_resource.frameworks
 
   new_resource.updated_by_last_action(updated)
 end
