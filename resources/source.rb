@@ -30,3 +30,4 @@ attribute :depth, :kind_of => Integer, :default => 10
 attribute :subdirectory, :kind_of => [String, NilClass], :default => nil
 attribute :ruby_version, :kind_of => [String, NilClass], :default => nil
 attribute :ruby_path, :kind_of => [String, NilClass], :default => nil
+attribute :bundler_version, :kind_of => [String, NilClass], :default => nil

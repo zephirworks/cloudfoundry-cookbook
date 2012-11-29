@@ -26,6 +26,7 @@ def initialize(name, run_context=nil)
   new_resource.user(node['cloudfoundry']['user']) unless new_resource.user
   new_resource.ruby_version(node['cloudfoundry']['ruby_1_9_2_version']) unless new_resource.ruby_version
   new_resource.ruby_path(ruby_bin_path(new_resource.ruby_version))
+  new_resource.bundler_version(node['cloudfoundry']['bundler_version']) unless new_resource.bundler_version
 end
 
 action :checkout do
@@ -48,6 +49,7 @@ action :checkout do
 
   if r.updated_by_last_action?
     gr = rbenv_gem "bundler" do
+      version new_resource.bundler_version
       ruby_version new_resource.ruby_version
       action :nothing
     end
