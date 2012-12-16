@@ -29,6 +29,3 @@ default['cloudfoundry']['log_dir']      = "/var/log/cloudfoundry"
 
 # Where to write pid files for all CloudFoundry components.
 default['cloudfoundry']['pid_dir']      = "/var/run/cloudfoundry"
-
-# TODO (trotter): Find out what this does.
-default['cloudfoundry']['shared_dir']   = "/var/vcap/shared"
