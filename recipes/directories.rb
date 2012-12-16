@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-%w[config_dir data_dir log_dir pid_dir services_dir].each do |d|
+%w[config_dir data_dir log_dir pid_dir].each do |d|
   directory node['cloudfoundry'][d] do
     recursive true
     owner node['cloudfoundry']['user']

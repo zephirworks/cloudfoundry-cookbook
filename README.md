@@ -51,7 +51,6 @@ Directories
 * `node['cloudfoundry']['data_dir']` - Path to the directory used by components to store private data. Default is `/var/vcap/data`.
 * `node['cloudfoundry']['log_dir']` - Where to write log files for all CloudFoundry components. Default is `/var/log/cloudfoundry`.
 * `node['cloudfoundry']['pid_dir']` - Where to write pid files for all CloudFoundry components. Default is `/var/run/cloudfoundry`.
-* `node['cloudfoundry']['services_dir']` - Path to the directory used by services to store private data. Default is `/var/vcap/services`.
 
 Rbenv
 -----
