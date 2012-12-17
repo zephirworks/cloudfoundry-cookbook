@@ -98,8 +98,8 @@ end
 
 def create_config_file
   directory new_resource.config_dir do
-    owner "root"
-    group 0
+    owner new_resource.user
+    group new_resource.group
     recursive true
     action :nothing
   end.run_action(:create)
@@ -107,6 +107,7 @@ def create_config_file
   t1 = template new_resource.config_file do
     source   "#{new_resource.name}-config.yml.erb"
     owner    new_resource.user
+    group    new_resource.group
     mode     "0644"
     action :nothing
   end
