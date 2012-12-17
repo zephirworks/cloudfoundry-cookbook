@@ -18,8 +18,4 @@ describe 'cloudfoundry::directories' do
   it 'creates a pid_dir' do
     directory('/var/run/cloudfoundry').must_exist.with(:owner, 'cloudfoundry')
   end
-
-  it 'creates a services_dir' do
-    directory('/var/vcap/services').must_exist.with(:owner, 'cloudfoundry')
-  end
 end
