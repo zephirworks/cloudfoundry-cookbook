@@ -99,7 +99,7 @@ class Chef
         if !Chef::Config[:solo] && cf_node = cf_nats_server_node
           nats_attrs = cf_node['nats_server']
           host = cf_node.attribute?('cloud') ? cf_node['cloud']['local_ipv4'] : cf_node['ipaddress']
-          return "#{nats_attrs['user']}:#{nats_attrs['password']}@#{host}:#{nats_attrs['port']}/"
+          return "nats://#{nats_attrs['user']}:#{nats_attrs['password']}@#{host}:#{nats_attrs['port']}/"
         end
 
         nats_attrs = node['cloudfoundry']['nats_server']
