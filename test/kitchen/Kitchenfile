@@ -1,7 +1,12 @@
 cookbook "cloudfoundry" do
+  # libraries
+  configuration "nodes_helpers"
+
+  # recipes
   configuration "default"
   configuration "user"
   configuration "directories"
   configuration "rbenv"
+
   runtimes []
 end
