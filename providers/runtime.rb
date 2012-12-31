@@ -31,9 +31,12 @@ action :create do
 
   node_attrs = node.default['cloudfoundry']['runtimes'][new_resource.name]
   node_attrs['name']          = new_resource.name
-  node_attrs['executable']    = new_resource.executable
   node_attrs['version']       = new_resource.version
+  node_attrs['description']   = new_resource.description
+  node_attrs['executable']    = new_resource.executable
   node_attrs['version_flag']  = new_resource.version_flag
+  node_attrs['version_output']= new_resource.version_output
+  node_attrs['additional_checks'] = new_resource.additional_checks if new_resource.additional_checks
   node_attrs['default']       = new_resource.default
   node_attrs['frameworks']    = new_resource.frameworks
 

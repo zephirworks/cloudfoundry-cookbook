@@ -22,7 +22,10 @@ default_action :create
 
 attribute :name, :kind_of => String, :name_attribute => true
 attribute :version, :kind_of => String, :required => true
+attribute :description, :kind_of => String, :required => true
 attribute :executable, :kind_of => String, :required => true
 attribute :version_flag, :kind_of => String, :required => true
+attribute :version_output, :kind_of => String, :required => true
+attribute :additional_checks, :kind_of => [String, NilClass], :default => nil
 attribute :default, :kind_of => [TrueClass, FalseClass], :default => false
 attribute :frameworks, :kind_of => Array, :default => []
