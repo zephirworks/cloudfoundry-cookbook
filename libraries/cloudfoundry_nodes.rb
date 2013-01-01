@@ -128,11 +128,11 @@ class Chef
       end
 
       def cf_runtimes_include?(name)
-        node['cloudfoundry']['runtimes'] && node['cloudfoundry']['runtimes'].include?(name)
+        cf_runtimes.include?(name)
       end
 
       def cf_runtimes_get(name)
-        node['cloudfoundry']['runtimes'][name]
+        cf_runtimes[name]
       end
 
       def cf_runtimes
