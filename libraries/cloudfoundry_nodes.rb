@@ -136,7 +136,33 @@ class Chef
       end
 
       def cf_runtimes
-        node['cloudfoundry']['runtimes'] || {}
+        runtimes = cf_dea_runtimes
+        runtimes.merge!(node['cloudfoundry']['runtimes'].to_hash)
+
+        Chef::Log.debug "cf_runtimes returning #{runtimes.inspect}"
+        runtimes
+      end
+
+      def cf_dea_runtimes
+        if Chef::Config[:solo]
+          return {}
+        end
+
+        dea_role = node['cloudfoundry_stager']['runtimes']['dea_role']
+        results = search(:node, "roles:#{dea_role} AND chef_environment:#{node.chef_environment}")
+        unless results.any?
+          Chef::Log.warn "No DEA found with a search for roles:#{dea_role}"
+          return {}
+        end
+
+        runtimes = results.inject({}) do |acc,n|
+          dea_runtimes = n['cloudfoundry']['runtimes'] || {}
+          Chef::Log.debug "DEA #{n} has #{dea_runtimes.count} runtimes"
+          acc.merge(dea_runtimes)
+        end
+
+        Chef::Log.debug "cf_dea_runtimes returning #{runtimes.inspect}"
+        runtimes
       end
     end
   end
