@@ -2,7 +2,7 @@
 # Cookbook Name:: cloudfoundry
 # Resource:: source
 #
-# Copyright 2012, ZephirWorks
+# Copyright 2012-2013, ZephirWorks
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ attribute :repository, :kind_of => String, :required => true
 attribute :reference, :kind_of => String, :required => true
 attribute :path, :kind_of => [String, NilClass], :default => nil
 attribute :user, :kind_of => [String, NilClass], :default => nil
+attribute :group, :kind_of => [String, NilClass], :default => nil
 attribute :enable_submodules, :kind_of => [TrueClass, FalseClass, NilClass], :default => true
 attribute :depth, :kind_of => Integer, :default => 10
 attribute :subdirectory, :kind_of => [String, NilClass], :default => nil

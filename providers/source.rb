@@ -2,7 +2,7 @@
 # Cookbook Name:: cloudfoundry
 # Provider:: source
 #
-# Copyright 2012, ZephirWorks
+# Copyright 2012-2013, ZephirWorks
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ def initialize(name, run_context=nil)
 
   new_resource.path("/srv/vcap-source/#{new_resource.name}") unless new_resource.path
   new_resource.user(node['cloudfoundry']['user']) unless new_resource.user
+  new_resource.group(node['cloudfoundry']['group']) unless new_resource.group
   new_resource.ruby_version(node['cloudfoundry']['ruby_1_9_2_version']) unless new_resource.ruby_version
   new_resource.ruby_path(ruby_bin_path(new_resource.ruby_version))
   new_resource.bundler_version(node['cloudfoundry']['bundler_version']) unless new_resource.bundler_version
@@ -32,6 +33,7 @@ end
 action :checkout do
   d = directory new_resource.path do
     user new_resource.user
+    group new_resource.group
     recursive true
     action :nothing
   end
@@ -41,6 +43,7 @@ action :checkout do
     repository        new_resource.repository
     reference         new_resource.reference
     user              new_resource.user
+    group             new_resource.group
     enable_submodules new_resource.enable_submodules
     depth             new_resource.depth
     action :nothing
@@ -58,6 +61,7 @@ action :checkout do
     %w[.bundle bundle].each do |d|
       dr = directory ::File.join(new_resource.path, d) do
         user new_resource.user
+        group new_resource.group
         action :nothing
       end
       dr.run_action(:create)
