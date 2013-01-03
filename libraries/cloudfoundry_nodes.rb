@@ -148,7 +148,7 @@ class Chef
           return {}
         end
 
-        dea_role = node['cloudfoundry_stager']['runtimes']['dea_role']
+        dea_role = node['cloudfoundry']['dea_role']
         results = search(:node, "roles:#{dea_role} AND chef_environment:#{node.chef_environment}")
         unless results.any?
           Chef::Log.warn "No DEA found with a search for roles:#{dea_role}"
