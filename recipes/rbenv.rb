@@ -2,8 +2,8 @@
 # Cookbook Name:: cloudfoundry
 # Recipe:: rbenv
 #
+# Copyright 2012-2013, ZephirWorks
 # Copyright 2012, Trotter Cashion
-# Copyright 2012, ZephirWorks
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
