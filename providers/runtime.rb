@@ -21,11 +21,9 @@ action :create do
   updated = false
 
   if node['cloudfoundry']['runtimes'] && node['cloudfoundry']['runtimes'][new_resource.name]
-    log "Redefining existing runtime #{new_resource.name}" do
-      level :warn
-    end
+    Chef::Log.warn "Redefining existing runtime #{new_resource.name}"
   else
-    log "Defining a new runtime: #{new_resource.name}"
+    Chef::Log.info "Defining a new runtime: #{new_resource.name}"
     updated = true
   end
 
