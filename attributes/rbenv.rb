@@ -21,5 +21,8 @@
 # The exact version of ruby-1.9.2 to install.
 default['cloudfoundry']['ruby_1_9_2_version'] = "1.9.2-p290"
 
+# The exact version of ruby-1.9.2 to install.
+default['cloudfoundry']['ruby_version'] = "1.9.2-p290"
+
 # The exact version of bundler to install.
 default['cloudfoundry']['bundler_version'] = "1.1.3"
