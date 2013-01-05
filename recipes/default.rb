@@ -21,4 +21,3 @@
 include_recipe "apt"
 include_recipe "cloudfoundry::user"
 include_recipe "cloudfoundry::directories"
-include_recipe "cloudfoundry::rbenv"

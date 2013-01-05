@@ -6,7 +6,6 @@ cookbook "cloudfoundry" do
   configuration "default"
   configuration "user"
   configuration "directories"
-  configuration "rbenv"
 
   runtimes []
 end
