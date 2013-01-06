@@ -39,12 +39,3 @@ default['cloudfoundry']['capacity']['max_apps'] = 20
 # The token to use to authenticate services to cloudfoundry. This _may_
 # not be safe to change.
 default['cloudfoundry']['service_token'] = "0xdeadbeef"
-
-# The role that will be used to search for a cloud_controller node.
-default['cloudfoundry']['cloud_controller_role'] = 'cloudfoundry_cloud_controller'
-
-# The role that will be used to search for dea nodes.
-default['cloudfoundry']['dea_role'] = 'cloudfoundry_dea'
-
-# The role that will be used to search for a redis_vcap node.
-default['cloudfoundry']['vcap_redis_role'] = 'cloudfoundry_redis_vcap'

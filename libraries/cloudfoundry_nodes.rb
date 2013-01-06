@@ -28,7 +28,7 @@ class Chef
           return node
         end
 
-        cf_role = node['cloudfoundry']['cloud_controller_role']
+        cf_role = node['cloudfoundry']['roles']['cloud_controller']
 
         if node.run_list.roles.include?(cf_role)
           return node
@@ -73,7 +73,7 @@ class Chef
           return nil
         end
 
-        cf_role = node['cloudfoundry']['nats_server_role']
+        cf_role = node['cloudfoundry']['roles']['nats_server']
 
         if node.run_list.roles.include?(cf_role)
           return node
@@ -112,7 +112,7 @@ class Chef
           return nil
         end
 
-        cf_role = node['cloudfoundry']['vcap_redis_role']
+        cf_role = node['cloudfoundry']['roles']['vcap_redis']
 
         if node.run_list.roles.include?(cf_role)
           return node
@@ -148,7 +148,7 @@ class Chef
           return {}
         end
 
-        dea_role = node['cloudfoundry']['dea_role']
+        dea_role = node['cloudfoundry']['roles']['dea']
         results = search(:node, "roles:#{dea_role} AND chef_environment:#{node.chef_environment}")
         unless results.any?
           Chef::Log.warn "No DEA found with a search for roles:#{dea_role}"

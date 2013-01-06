@@ -64,7 +64,8 @@ All components in a CloudFoundry cluster need access to a Nats server.
 
 The recommended way to configure the server is to use search:
 
-* `node['cloudfoundry']['nats_server_role']` - The role that will be used to search for a Nats server node. Default is `cloudfoundry_nats_server`.
+* `node['cloudfoundry']['roles']['nats_server']` - The role that will be used
+  to search for a Nats server node. Default is `cloudfoundry_nats_server`.
 
 If for some reason you can't or won't use search, you need to specify connection information on each node
 (ideally, using a role):
@@ -83,8 +84,19 @@ Miscellaneous
 * `node['cloudfoundry']['capacity']['max_services']` - Maximum number of services to which an application can be bound. Default is `16`.
 * `node['cloudfoundry']['capacity']['max_apps']` - Maximum number of applications that a user can have. Default is `20`.
 * `node['cloudfoundry']['service_token']` - The token to use to authenticate services to cloudfoundry. Default is `0xdeadbeef`.
-* `node['cloudfoundry']['cloud_controller_role']` - The role that will be used to search for a cloud_controller node. Default is `cloudfoundry_cloud_controller`.
-* `node['cloudfoundry']['vcap_redis_role']` - The role that will be used to search for a redis_vcap node. Default is `cloudfoundry_redis_vcap`.
+
+Roles
+-----
+
+* `node['cloudfoundry']['roles']['cloud_controller']` - The role that will be
+  used to search for a cloud_controller node. Defaults to
+  `cloudfoundry_cloud_controller`.
+* `node['cloudfoundry']['roles']['dea']` - The role that will be used to
+  search for dea nodes.. Defaults to `cloudfoundry_dea`.
+* `node['cloudfoundry']['roles']['nats_server']` - The role that will be used
+  to search for a Nats server node. Defaults to `cloudfoundry_nats_server`.
+* `node['cloudfoundry']['roles']['vcap_redis']` - The role that will be used
+  to search for a redis_vcap node. Default is `cloudfoundry_redis_vcap`.
 
 License and Author
 ==================

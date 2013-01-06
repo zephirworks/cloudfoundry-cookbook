@@ -17,9 +17,6 @@
 # limitations under the License.
 #
 
-# The role that will be used to search for a nats-server node.
-default['cloudfoundry']['nats_server_role'] = 'cloudfoundry_nats_server'
-
 # Host of the Nats Server that all CloudFoundry components will use for
 # messaging.
 default['cloudfoundry']['nats_server']['host'] = "localhost"
