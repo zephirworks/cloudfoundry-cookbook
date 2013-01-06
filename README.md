@@ -91,6 +91,11 @@ Roles
 * `node['cloudfoundry']['roles']['cloud_controller']` - The role that will be
   used to search for a cloud_controller node. Defaults to
   `cloudfoundry_cloud_controller`.
+* `node['cloudfoundry']['roles']['cloud_controller_database_master']` - The
+  role that will be used to search for a node running the PostgreSQL DB that the
+  `cloud_controller` will use. If the role is `nil`, or if no node is found with
+  this role, the `cloud_controller` will assume a local DB. Defaults to
+  `cloudfoundry_cloud_controller_database_master`.
 * `node['cloudfoundry']['roles']['dea']` - The role that will be used to
   search for dea nodes.. Defaults to `cloudfoundry_dea`.
 * `node['cloudfoundry']['roles']['nats_server']` - The role that will be used

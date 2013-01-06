@@ -20,6 +20,9 @@
 # The role that will be used to search for a cloud_controller node.
 default['cloudfoundry']['roles']['cloud_controller'] = 'cloudfoundry_cloud_controller'
 
+# The role that will be used to search for a cloud_controller node.
+default['cloudfoundry']['roles']['cloud_controller_database_master'] = 'cloudfoundry_cloud_controller_database_master'
+
 # The role that will be used to search for dea nodes.
 default['cloudfoundry']['roles']['dea'] = 'cloudfoundry_dea'
 
