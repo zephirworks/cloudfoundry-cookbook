@@ -78,6 +78,8 @@ If for some reason you can't or won't use search, you need to specify connection
 Miscellaneous
 -------------
 
+* `node['cloudfoundry']['domain']` - Main external domain. Defaults to
+  `vcap.me`.
 * `node['cloudfoundry']['local_route']` - local_route is the IP address of a well known server on your network, it is used to choose the right ip address (think of hosts that have multiple nics and IP addresses assigned to them) of the host running the cloud controller. Default value of nil, should work in most cases. Default is `nil`.
 * `node['cloudfoundry']['capacity']['memory']` - Maximum amount of memory that an application can request. Default is `2048`.
 * `node['cloudfoundry']['capacity']['max_uris']` - Maximum number of uris to which an application can be bound. Default is `4`.

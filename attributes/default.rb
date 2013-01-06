@@ -18,6 +18,9 @@
 # limitations under the License.
 #
 
+# Main external domain.
+default['cloudfoundry']['domain'] = 'vcap.me'
+
 # local_route is the IP address of a well known server on your network, it
 # is used to choose the right ip address (think of hosts that have multiple nics
 # and IP addresses assigned to them) of the host running the cloud controller. Default

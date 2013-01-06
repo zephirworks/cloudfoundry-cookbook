@@ -22,48 +22,15 @@ class Chef
     module CloudfoundryNodes
       include Chef::Mixin::Language # for search
 
-      def cloud_controller_node
-        if Chef::Config[:solo]
-          Chef::Log.warn "cloud_controller_node is not meant for Chef Solo"
-          return node
-        end
-
-        cf_role = node['cloudfoundry']['roles']['cloud_controller']
-
-        if node.run_list.roles.include?(cf_role)
-          return node
-        end
-
-        results = search(:node, "role:#{cf_role} AND chef_environment:#{node.chef_environment}")
-        if results.size >= 1
-          results[0]
-        else
-          Chef::Log.warn "cloud_controller_node found no cloud_controller"
-          nil
-        end
-      end
-
       def cloud_controller_domain
-        if Chef::Config[:solo]
-          return node['cloudfoundry_cloud_controller']['server']['domain']
-        end
-
-        if cf_node = cloud_controller_node
-          cf_node['cloudfoundry_cloud_controller']['server']['domain']
-        else
-          raise "cloud_controller_url found no cloud_controller"
-        end
+        node['cloudfoundry']['domain']
       end
 
       def cloud_controller_url
-        if Chef::Config[:solo]
-          return node['cloudfoundry_cloud_controller']['server']['api_uri']
-        end
-
-        if cf_node = cloud_controller_node
-          return cf_node['cloudfoundry_cloud_controller']['server']['api_uri']
+        if node['cloudfoundry']['api_url']
+          node['cloudfoundry']['api_url']
         else
-          raise "cloud_controller_url found no cloud_controller"
+          "http://api.#{node['cloudfoundry']['domain']}"
         end
       end
 
