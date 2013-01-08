@@ -55,7 +55,8 @@ Directories
 Rbenv
 -----
 
-* `node['cloudfoundry']['ruby_version']` - The exact version of ruby-1.9.2 to install. Default is `1.9.2-p290"`.
+* `node['cloudfoundry']['ruby_version']` - The exact version of ruby to use to
+  run components. Defaults to `1.9.3-p286`.
 
 Nats
 ----
