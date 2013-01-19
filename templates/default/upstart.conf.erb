@@ -11,7 +11,9 @@ stop on runlevel [016]
 respawn
 
 env PATH="<%= @path %>:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+env PIDFILE="<%= @pid_file %>"
 export PATH
+export PIDFILE
 
 pre-start script
   mkdir -p `dirname '<%= @pid_file %>'`
