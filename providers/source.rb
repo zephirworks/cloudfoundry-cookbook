@@ -25,7 +25,7 @@ def initialize(name, run_context=nil)
   new_resource.path("/srv/vcap-source/#{new_resource.name}") unless new_resource.path
   new_resource.user(node['cloudfoundry']['user']) unless new_resource.user
   new_resource.group(node['cloudfoundry']['group']) unless new_resource.group
-  new_resource.ruby_version(node['cloudfoundry']['ruby_1_9_2_version']) unless new_resource.ruby_version
+  new_resource.ruby_version(node['cloudfoundry']['ruby_version']) unless new_resource.ruby_version
   new_resource.ruby_path(ruby_bin_path(new_resource.ruby_version))
   new_resource.bundler_version(node['cloudfoundry']['bundler_version']) unless new_resource.bundler_version
 end
