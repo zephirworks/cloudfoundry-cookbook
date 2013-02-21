@@ -18,8 +18,12 @@
 # limitations under the License.
 #
 
+if Chef::Version.new(Chef::VERSION).major >= 11
+  include Chef::DSL::Recipe
+else
+  include Chef::Mixin::LanguageIncludeRecipe
+end
 include Chef::Mixin::CloudfoundryCommon
-include Chef::Mixin::LanguageIncludeRecipe
 
 def initialize(name, run_context=nil)
   super

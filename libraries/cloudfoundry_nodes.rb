@@ -20,7 +20,11 @@
 class Chef
   module Mixin
     module CloudfoundryNodes
-      include Chef::Mixin::Language # for search
+      if Chef::Version.new(Chef::VERSION).major >= 11
+        include Chef::DSL::DataQuery
+      else
+        include Chef::Mixin::Language # for search
+      end
 
       def cloud_controller_domain
         node['cloudfoundry']['domain']
