@@ -7,6 +7,21 @@ CloudFoundry cookbooks.
 Requirements
 ============
 
+Chef
+---
+
+This cookbook is fully supported on Chef 10.x starting with 10.14.x, as well
+as Chef 11.
+
+*NOTE*: at this time the other cloudfoundry-* cookbooks are not officially
+supported on Chef 11; testing is in progress. If you do try running them on
+Chef 11, please make sure to file a GitHub issue for any problem you may find.
+
+Tested on:
+
+* Chef 10.14.4
+* Chef 11.4.0
+
 Platform
 --------
 
