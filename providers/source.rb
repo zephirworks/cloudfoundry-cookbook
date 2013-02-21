@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+include Chef::Mixin::LanguageIncludeRecipe
 include Chef::Mixin::CloudfoundryCommon
 
 def initialize(name, run_context=nil)
@@ -28,6 +29,10 @@ def initialize(name, run_context=nil)
   new_resource.ruby_version(node['cloudfoundry']['ruby_version']) unless new_resource.ruby_version
   new_resource.ruby_path(ruby_bin_path(new_resource.ruby_version))
   new_resource.bundler_version(node['cloudfoundry']['bundler_version']) unless new_resource.bundler_version
+
+  recipe_eval do
+    include_recipe "git"
+  end
 end
 
 action :checkout do

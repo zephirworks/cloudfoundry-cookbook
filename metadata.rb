@@ -10,6 +10,6 @@ version          "1.3.1"
   supports os
 end
 
-%w{ apt logrotate rbenv }.each do |cb|
+%w{ apt git logrotate rbenv }.each do |cb|
   depends cb
 end
