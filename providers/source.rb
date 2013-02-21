@@ -63,15 +63,6 @@ action :checkout do
     end
     gr.run_action(:install)
 
-    %w[.bundle bundle].each do |d|
-      dr = directory ::File.join(new_resource.path, d) do
-        user new_resource.user
-        group new_resource.group
-        action :nothing
-      end
-      dr.run_action(:create)
-    end
-
     bundle_path = new_resource.subdirectory ? ::File.join(new_resource.path, new_resource.subdirectory) : new_resource.path
 
     br = bash "install gems in #{bundle_path}" do
