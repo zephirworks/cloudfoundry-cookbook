@@ -19,7 +19,7 @@
 #
 
 # The exact version of ruby to use to run components.
-default['cloudfoundry']['ruby_version'] = "1.9.3-p286"
+default['cloudfoundry']['ruby_version'] = "1.9.3-p392"
 
 # The exact version of bundler to install.
 default['cloudfoundry']['bundler_version'] = "1.1.3"

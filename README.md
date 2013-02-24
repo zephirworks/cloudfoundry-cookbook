@@ -71,7 +71,7 @@ Rbenv
 -----
 
 * `node['cloudfoundry']['ruby_version']` - The exact version of ruby to use to
-  run components. Defaults to `1.9.3-p286`.
+  run components. Defaults to `1.9.3-p392`.
 
 Nats
 ----
